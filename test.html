@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="TechPeek Test Page">
+    <meta name="description" content="Page de test pour l'extension TechPeek">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https:">
+    
+    <title>🧪 Page de Test TechPeek</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+        
+        .test-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            background: #6366f1;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin: 0.25rem;
+            font-size: 0.875rem;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+        
+        .status-active { background: #10b981; }
+        .status-warning { background: #f59e0b; }
+        .status-error { background: #ef4444; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="test-card text-center">
+                    <h1 class="display-4 mb-4">
+                        <i class="fas fa-flask text-primary"></i>
+                        Page de Test TechPeek
+                    </h1>
+                    <p class="lead">
+                        Cette page contient plusieurs technologies pour tester l'extension TechPeek.
+                        Cliquez sur l'icône de l'extension pour voir les résultats !
+                    </p>
+                </div>
+
+                <div class="test-card">
+                    <h2><i class="fab fa-js-square text-warning"></i> Frameworks JavaScript</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Technologies Chargées :</h5>
+                            <span class="tech-badge">jQuery</span>
+                            <span class="tech-badge">Bootstrap</span>
+                            <span class="tech-badge">Chart.js</span>
+                            <span class="tech-badge">Moment.js</span>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Status :</h5>
+                            <p><span class="status-indicator status-active"></span>jQuery : Actif</p>
+                            <p><span class="status-indicator status-active"></span>Bootstrap : Actif</p>
+                            <p><span class="status-indicator status-warning"></span>React : Non détecté</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-card">
+                    <h2><i class="fas fa-shield-alt text-success"></i> Sécurité</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Headers de Sécurité :</h5>
+                            <p><span class="status-indicator status-active"></span>HTTPS : Activé</p>
+                            <p><span class="status-indicator status-warning"></span>HSTS : Non configuré</p>
+                            <p><span class="status-indicator status-active"></span>CSP : Configuré</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Cookies :</h5>
+                            <p><span class="status-indicator status-active"></span>Secure : Oui</p>
+                            <p><span class="status-indicator status-active"></span>HttpOnly : Oui</p>
+                            <p><span class="status-indicator status-warning"></span>SameSite : Partiel</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-card">
+                    <h2><i class="fas fa-cloud text-info"></i> CDN & Infrastructure</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>CDN Détectés :</h5>
+                            <span class="tech-badge">jsDelivr</span>
+                            <span class="tech-badge">Cloudflare</span>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Performance :</h5>
+                            <p><span class="status-indicator status-active"></span>Compression : Gzip</p>
+                            <p><span class="status-indicator status-active"></span>Cache : Optimisé</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-card">
+                    <h2><i class="fas fa-chart-bar text-primary"></i> Test Interactif</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <canvas id="testChart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Actions de Test :</h5>
+                            <button class="btn btn-primary mb-2" onclick="testAnalytics()">
+                                <i class="fas fa-analytics"></i> Simuler Analytics
+                            </button><br>
+                            <button class="btn btn-success mb-2" onclick="testPerformance()">
+                                <i class="fas fa-tachometer-alt"></i> Test Performance
+                            </button><br>
+                            <button class="btn btn-warning mb-2" onclick="testCookies()">
+                                <i class="fas fa-cookie-bite"></i> Test Cookies
+                            </button>
+                            
+                            <div id="test-results" class="mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-card">
+                    <h2><i class="fas fa-info-circle text-secondary"></i> Informations Techniques</h2>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6>Navigateur :</h6>
+                            <p id="browser-info">Détection en cours...</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Résolution :</h6>
+                            <p id="screen-info">Détection en cours...</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Connexion :</h6>
+                            <p id="connection-info">Détection en cours...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+    <script>
+        // Simulation d'analytics
+        window.gtag = function() {
+            console.log('Google Analytics simulé:', arguments);
+        };
+
+        // Simulation Facebook Pixel
+        window.fbq = function() {
+            console.log('Facebook Pixel simulé:', arguments);
+        };
+
+        // Initialisation de Chart.js
+        const ctx = document.getElementById('testChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['React', 'Vue.js', 'Angular', 'jQuery', 'Bootstrap'],
+                datasets: [{
+                    label: 'Popularité',
+                    data: [85, 75, 70, 60, 80],
+                    backgroundColor: [
+                        '#61dafb',
+                        '#4fc08d',
+                        '#dd0031',
+                        '#0769ad',
+                        '#7952b3'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Technologies Web Populaires'
+                    }
+                }
+            }
+        });
+
+        // Fonctions de test
+        function testAnalytics() {
+            gtag('event', 'test_click', {
+                'event_category': 'engagement',
+                'event_label': 'techpeek_test'
+            });
+            
+            fbq('track', 'ViewContent', {
+                content_type: 'test_page'
+            });
+            
+            showResult('Analytics', 'Événements envoyés avec succès');
+        }
+
+        function testPerformance() {
+            const start = performance.now();
+            
+            // Simulation d'une tâche
+            setTimeout(() => {
+                const end = performance.now();
+                const duration = Math.round(end - start);
+                showResult('Performance', `Test terminé en ${duration}ms`);
+            }, 100);
+        }
+
+        function testCookies() {
+            document.cookie = "techpeek_test=active; Secure; HttpOnly; SameSite=Strict";
+            showResult('Cookies', 'Cookie de test créé avec sécurité');
+        }
+
+        function showResult(type, message) {
+            const results = document.getElementById('test-results');
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-success alert-dismissible fade show';
+            alert.innerHTML = `
+                <strong>${type}:</strong> ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            results.appendChild(alert);
+            
+            // Auto-remove after 3 seconds
+            setTimeout(() => {
+                if (alert.parentNode) {
+                    alert.remove();
+                }
+            }, 3000);
+        }
+
+        // Informations techniques
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigateur
+            document.getElementById('browser-info').textContent = navigator.userAgent.split(' ').pop();
+            
+            // Résolution
+            document.getElementById('screen-info').textContent = 
+                `${window.screen.width}x${window.screen.height}`;
+            
+            // Connexion
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            document.getElementById('connection-info').textContent = 
+                connection ? `${connection.effectiveType} (${connection.downlink}Mbps)` : 'Non disponible';
+        });
+
+        // Exposer des variables pour les tests
+        window.testFrameworks = {
+            jQuery: $,
+            moment: moment,
+            Chart: Chart,
+            Bootstrap: bootstrap
+        };
+
+        console.log('🧪 Page de test TechPeek chargée');
+        console.log('📊 Technologies disponibles:', Object.keys(window.testFrameworks));
+    </script>
+</body>
+</html> 

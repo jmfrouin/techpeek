@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechPeek</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="../icons/icon-32.png" alt="TechPeek" class="logo-icon">
+                <h1>TechPeek</h1>
+            </div>
+            <div class="url-info">
+                <span id="current-url">Chargement...</span>
+            </div>
+        </header>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Analyse en cours...</p>
+        </div>
+
+        <div class="results" id="results" style="display: none;">
+            <!-- Framework JavaScript -->
+            <section class="tech-section">
+                <h2 class="section-title">
+                    <span class="icon">⚛️</span>
+                    Framework JavaScript
+                </h2>
+                <div class="tech-grid" id="js-frameworks">
+                    <div class="no-data">Aucun framework détecté</div>
+                </div>
+            </section>
+
+            <!-- Sécurité -->
+            <section class="tech-section">
+                <h2 class="section-title">
+                    <span class="icon">🔒</span>
+                    Sécurité
+                </h2>
+                <div class="security-grid" id="security-info">
+                    <div class="no-data">Analyse en cours...</div>
+                </div>
+            </section>
+
+            <!-- CDN -->
+            <section class="tech-section">
+                <h2 class="section-title">
+                    <span class="icon">🌐</span>
+                    CDN & Infrastructure
+                </h2>
+                <div class="tech-grid" id="cdn-info">
+                    <div class="no-data">Aucun CDN détecté</div>
+                </div>
+            </section>
+
+            <!-- Data Platform -->
+            <section class="tech-section">
+                <h2 class="section-title">
+                    <span class="icon">📊</span>
+                    Analytics & Data
+                </h2>
+                <div class="tech-grid" id="data-platforms">
+                    <div class="no-data">Aucune plateforme détectée</div>
+                </div>
+            </section>
+
+            <!-- Performance -->
+            <section class="tech-section">
+                <h2 class="section-title">
+                    <span class="icon">⚡</span>
+                    Performance
+                </h2>
+                <div class="performance-grid" id="performance-info">
+                    <div class="no-data">Analyse en cours...</div>
+                </div>
+            </section>
+
+            <!-- Divers -->
+            <section class="tech-section">
+                <h2 class="section-title">
+                    <span class="icon">🔧</span>
+                    Informations Techniques
+                </h2>
+                <div class="misc-grid" id="misc-info">
+                    <div class="no-data">Analyse en cours...</div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="footer">
+            <button id="refresh-btn" class="refresh-btn">
+                <span class="icon">🔄</span>
+                Actualiser l'analyse
+            </button>
+            <div class="export-options">
+                <button id="export-json" class="export-btn">JSON</button>
+                <button id="export-csv" class="export-btn">CSV</button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html> 

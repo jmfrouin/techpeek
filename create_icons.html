@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur d'icônes TechPeek</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .icon-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .icon-item {
+            text-align: center;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        canvas {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+        }
+        button {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #5855eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Générateur d'icônes TechPeek</h1>
+    <p>Cliquez sur "Télécharger" sous chaque icône pour la sauvegarder.</p>
+    
+    <div class="icon-container" id="iconContainer">
+        <!-- Les icônes seront générées ici -->
+    </div>
+
+    <script>
+        class IconGenerator {
+            constructor() {
+                this.sizes = [16, 32, 48, 128];
+                this.generateAllIcons();
+            }
+
+            generateAllIcons() {
+                const container = document.getElementById('iconContainer');
+                
+                this.sizes.forEach(size => {
+                    const iconItem = document.createElement('div');
+                    iconItem.className = 'icon-item';
+                    
+                    const title = document.createElement('h3');
+                    title.textContent = `${size}x${size}px`;
+                    
+                    const canvas = this.createIcon(size);
+                    
+                    const downloadBtn = document.createElement('button');
+                    downloadBtn.textContent = 'Télécharger';
+                    downloadBtn.onclick = () => this.downloadIcon(canvas, size);
+                    
+                    iconItem.appendChild(title);
+                    iconItem.appendChild(canvas);
+                    iconItem.appendChild(downloadBtn);
+                    
+                    container.appendChild(iconItem);
+                });
+            }
+
+            createIcon(size) {
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+
+                // Fond avec gradient
+                const gradient = ctx.createLinearGradient(0, 0, size, size);
+                gradient.addColorStop(0, '#6366f1');
+                gradient.addColorStop(1, '#8b5cf6');
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, size, size);
+
+                // Bordure arrondie
+                ctx.globalCompositeOperation = 'destination-in';
+                ctx.beginPath();
+                ctx.roundRect(0, 0, size, size, size * 0.15);
+                ctx.fill();
+                ctx.globalCompositeOperation = 'source-over';
+
+                // Icône de recherche/analyse
+                const centerX = size / 2;
+                const centerY = size / 2;
+                const iconSize = size * 0.6;
+
+                // Cercle principal (loupe)
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = size * 0.08;
+                ctx.beginPath();
+                ctx.arc(centerX - iconSize * 0.1, centerY - iconSize * 0.1, iconSize * 0.25, 0, 2 * Math.PI);
+                ctx.stroke();
+
+                // Manche de la loupe
+                ctx.beginPath();
+                ctx.moveTo(centerX + iconSize * 0.1, centerY + iconSize * 0.1);
+                ctx.lineTo(centerX + iconSize * 0.3, centerY + iconSize * 0.3);
+                ctx.stroke();
+
+                // Points de données (représentant l'analyse)
+                ctx.fillStyle = 'white';
+                const dotSize = size * 0.03;
+                
+                // Petits points autour pour représenter les données
+                for (let i = 0; i < 6; i++) {
+                    const angle = (i * Math.PI * 2) / 6;
+                    const x = centerX + Math.cos(angle) * iconSize * 0.35;
+                    const y = centerY + Math.sin(angle) * iconSize * 0.35;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, dotSize, 0, 2 * Math.PI);
+                    ctx.fill();
+                }
+
+                return canvas;
+            }
+
+            downloadIcon(canvas, size) {
+                const link = document.createElement('a');
+                link.download = `icon-${size}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            }
+        }
+
+        // Polyfill pour roundRect si nécessaire
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+                this.beginPath();
+                this.moveTo(x + radius, y);
+                this.lineTo(x + width - radius, y);
+                this.quadraticCurveTo(x + width, y, x + width, y + radius);
+                this.lineTo(x + width, y + height - radius);
+                this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                this.lineTo(x + radius, y + height);
+                this.quadraticCurveTo(x, y + height, x, y + height - radius);
+                this.lineTo(x, y + radius);
+                this.quadraticCurveTo(x, y, x + radius, y);
+                this.closePath();
+            };
+        }
+
+        // Initialiser le générateur d'icônes
+        new IconGenerator();
+    </script>
+</body>
+</html> 
